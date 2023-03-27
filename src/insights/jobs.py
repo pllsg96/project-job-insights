@@ -82,7 +82,6 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
     except ValueError:
         print("Something goes wrong")
 
-    print(jobs_by_type)
     return jobs_by_type
 
     raise NotImplementedError
