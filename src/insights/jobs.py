@@ -48,9 +48,12 @@ def get_unique_job_types(path: str) -> List[str]:
 
     all_jobs = set()
     get_all_jobs = read(path)
-    for job in get_all_jobs:
-        all_jobs.add(job['job_type'])
-    # print('___INICIO___', all_jobs, '___FIM___')
+    try:
+        for job in get_all_jobs:
+            all_jobs.add(job['job_type'])
+    except FileNotFoundError:
+        print('File was not found')
+    print('___INICIO___', all_jobs, '___FIM___')
     return all_jobs
     raise NotImplementedError
 
