@@ -84,5 +84,5 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
 
     print(jobs_by_type)
     return jobs_by_type
-    
+
     raise NotImplementedError
