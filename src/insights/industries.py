@@ -1,4 +1,5 @@
 from typing import List, Dict
+from src.insights.jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,6 +17,14 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
+    all_info = read(path)
+    all_industries = set()
+
+    for industries in all_info:
+        if (industries['industry'] != ''):
+            all_industries.add(industries['industry'])
+    # print('___INICIO___', all_industries, '___FIM___')
+    return all_industries
     raise NotImplementedError
 
 
