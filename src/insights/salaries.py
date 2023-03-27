@@ -22,20 +22,20 @@ def get_max_salary(path: str) -> int:
 
 
 def get_min_salary(path: str) -> int:
-    """Get the minimum salary of all jobs
+    all_info = read(path)
+    the_min_salary = 0
+    try:
+        all_salaries = []
+        for salary in all_info:
+            if (salary["min_salary"] and salary["min_salary"].isnumeric()):
+                convertion = int(salary["min_salary"])
+                all_salaries.append(convertion)
+        the_min_salary = min(all_salaries)
 
-    Must call `read`
+    except ValueError:
+        print("Something goes wrong")
 
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    int
-        The minimum salary paid out of all job opportunities
-    """
+    return the_min_salary
     raise NotImplementedError
 
 
