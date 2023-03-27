@@ -1,5 +1,6 @@
 from functools import lru_cache
 from typing import List, Dict
+import csv
 
 
 @lru_cache
@@ -16,6 +17,16 @@ def read(path: str) -> List[Dict]:
     list
         List of rows as dicts ..
     """
+    output_file = []
+    try:
+        with open(path) as file:
+            info = csv.DictReader(file)
+            for row in info:
+                output_file.append(row)
+    except FileNotFoundError:
+        print('File was not found')
+    return output_file
+
     raise NotImplementedError
 
 
