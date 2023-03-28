@@ -8,7 +8,7 @@ def get_max_salary(path: str) -> int:
     try:
         all_salaries = []
         for salary in all_info:
-            if (salary["max_salary"] and salary["max_salary"].isnumeric()):
+            if salary["max_salary"] and salary["max_salary"].isnumeric():
                 convertion = int(salary["max_salary"])
                 all_salaries.append(convertion)
         the_max_salary = max(all_salaries)
@@ -27,7 +27,7 @@ def get_min_salary(path: str) -> int:
     try:
         all_salaries = []
         for salary in all_info:
-            if (salary["min_salary"] and salary["min_salary"].isnumeric()):
+            if salary["min_salary"] and salary["min_salary"].isnumeric():
                 convertion = int(salary["min_salary"])
                 all_salaries.append(convertion)
         the_min_salary = min(all_salaries)
@@ -40,29 +40,25 @@ def get_min_salary(path: str) -> int:
 
 
 def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
-    """Checks if a given salary is in the salary range of a given job
 
-    Parameters
-    ----------
-    job : dict
-        The job with `min_salary` and `max_salary` keys
-    salary : int
-        The salary to check if matches with salary range of the job
+    max_s = 0
+    min_s = 0
+    sal = 0
+    try:
+        max_s = int(job["max_salary"])
+        min_s = int(job["min_salary"])
+        sal = int(salary)
+        assert min_s < max_s
 
-    Returns
-    -------
-    bool
-        True if the salary is in the salary range of the job, False otherwise
-
-    Raises
-    ------
-    ValueError
-        If `job["min_salary"]` or `job["max_salary"]` doesn't exists
-        If `job["min_salary"]` or `job["max_salary"]` aren't valid integers
-        If `job["min_salary"]` is greather than `job["max_salary"]`
-        If `salary` isn't a valid integer
-    """
-    raise NotImplementedError
+    except AssertionError:
+        raise ValueError()
+    except TypeError:
+        raise ValueError()
+    except KeyError:
+        raise ValueError()
+    else:
+        x = min_s <= sal <= max_s
+    return x
 
 
 def filter_by_salary_range(
@@ -83,3 +79,8 @@ def filter_by_salary_range(
         Jobs whose salary range contains `salary`
     """
     raise NotImplementedError
+
+
+def is_a_number(value: int):
+    checking = type(value) == 'int'
+    return checking
